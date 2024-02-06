@@ -1,7 +1,8 @@
 <?php
-const CLASES_FOLDER = "clases";
-const PEOPLE_FOLDER = "people";
-const ITEMS_FOLDER = "items";
+//Ya no son necearios porque van en el $nombre_clase
+// const CLASES_FOLDER = "clases";
+// const PEOPLE_FOLDER = "people";
+// const ITEMS_FOLDER = "items";
 
 spl_autoload_register(function ($nombre_clase) {
 
