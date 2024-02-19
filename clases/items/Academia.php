@@ -1,6 +1,8 @@
 <?php
 namespace clases\items;
 
+use clases\people\Profesor;
+use clases\people\Alumno;
 
 
 /**

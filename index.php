@@ -13,6 +13,11 @@
 require_once 'autoload.php';
 require_once "util.php";
 
+use clases\items\{Academia, Baile};
+use clases\people\Profesor;
+// use clases\items\Baile;
+use clases\people\Alumno;
+
 
 
 $academia = new Academia();
@@ -40,7 +45,9 @@ $profe1->engadir($afro2);
 // $profe1->engadirSoDiferenteNome($afro2);
 
 $alumno1 = new Alumno("Juan", "Antas Ulla", "650650650");
+$alumno1->setFechaNacimiento("1990-06-03");
 $alumno2 = new Alumno("Rita", "Román Rueda", "652652652");
+$alumno2->setFechaNacimiento("2010-08-20");
 
 $alumno1->setNumClases(0);
 $alumno2->setNumClases(4);
@@ -70,6 +77,9 @@ echo "<h2>{$profe1->getNome()}->eliminar baile...</h2>";
 $profe1->eliminar(new Baile("AFRO"));
 $profe1->mostrarBailes();
 
-
+echo "<pre>";
+$alumno1->verInformacion();
+$alumno2->verInformacion();
+echo "</pre>";
 
 

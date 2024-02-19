@@ -1,5 +1,9 @@
 <?php
+
 namespace clases\people;
+
+use DateTimeImmutable;
+
 /**
  * Description of Alumno
  *
@@ -7,7 +11,8 @@ namespace clases\people;
  */
 
 
-final class Alumno extends Persoa {
+final class Alumno extends Persoa
+{
 
     const CUOTA_UNA_CLASE = 20;
     const CUOTA_DOS_CLASES = 32;
@@ -15,9 +20,12 @@ final class Alumno extends Persoa {
 
     private $numClases;
 
-    public function __construct(string $nome, string $apelidos,
-            string $mobil,
-            $numClases = 0) {
+    public function __construct(
+        string $nome,
+        string $apelidos,
+        string $mobil,
+        $numClases = 0
+    ) {
         parent::__construct($nome, $apelidos, $mobil);
         $this->numClases = $numClases;
     }
@@ -26,11 +34,13 @@ final class Alumno extends Persoa {
     //y cuando se llame a new Alumno($nome, $apelidos, $mobil) se llamaría
     //implícitamente al constructor de Persona
 
-    public function setNumClases($numClases): void {
+    public function setNumClases($numClases): void
+    {
         $this->numClases = $numClases;
     }
 
-    public function aPagar(): string {
+    public function aPagar(): string
+    {
         $importe = 0;
 
         if (($this->numClases != null) && ($this->numClases > 0)) {
@@ -42,7 +52,7 @@ final class Alumno extends Persoa {
                 case 2:
                     $importe = self::CUOTA_DOS_CLASES;
                     break;
-                default :
+                default:
                     //asumimos números positivos
                     $importe = self::CUOTA_TRES_O_MAS_CLASES;
                     break;
@@ -53,4 +63,31 @@ final class Alumno extends Persoa {
         return $importe;
     }
 
+
+    public function verInformacion()
+    {
+        if ($this->comprobarMayoriaEdad()) {
+            echo $this->getNome() . " " . $this->getApelidos();
+        }
+    }
+
+    private function comprobarMayoriaEdad(): bool
+    {
+
+        $es_mayor_edad = false;
+
+        $fecha_actual = new DateTimeImmutable("now");
+        $fecha_nacimiento = new \DateTime($this->getFechaNacimiento());
+
+        $edad = $fecha_actual->diff($fecha_nacimiento);
+
+        if ($edad->y >= 18) {
+            $es_mayor_edad = true;
+        } else {
+            $es_mayor_edad = false;
+        }
+
+        // return $edad->y >= 18 ? true : false;
+        return $es_mayor_edad;
+    }
 }

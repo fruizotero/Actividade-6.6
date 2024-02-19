@@ -5,10 +5,12 @@ namespace clases\people;
  *
  * @author maria
  */
-class Persoa {
+abstract class Persoa {
    protected $nome;
    protected $apelidos;
    protected $mobil;
+
+    protected $fecha_nacimiento;
    
    
    public function __construct(string $nome, string $apelidos, string $mobil) {
@@ -42,11 +44,28 @@ class Persoa {
        $this->mobil = $mobil;
    }
 
-   public function verInformacion(){
-       $cadea = implode (" ", 
-               [$this->nome,  $this->apelidos, 
-                   "(".$this->mobil.")<br/>"]);
-       echo $cadea;
-   }
+   
 
+    abstract public function verInformacion();
+
+
+    
+
+    /**
+     * Get the value of fecha_nacimiento
+     */
+    public function getFechaNacimiento()
+    {
+        return $this->fecha_nacimiento;
+    }
+
+    /**
+     * Set the value of fecha_nacimiento
+     */
+    public function setFechaNacimiento($fecha_nacimiento): self
+    {
+        $this->fecha_nacimiento = $fecha_nacimiento;
+
+        return $this;
+    }
 }
